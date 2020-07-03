@@ -15,6 +15,7 @@ const vRosa = Color(0xFFff79c6);
 void main() {
   runApp(MaterialApp(
     home: Home(),
+    debugShowCheckedModeBanner: false,
   ));
 }
 
