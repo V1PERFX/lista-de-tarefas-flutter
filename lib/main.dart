@@ -97,10 +97,12 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                RaisedButton(
-                  color: vAzul,
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(vAzul),
+                    foregroundColor: MaterialStateProperty.all<Color>(vCinza),
+                  ),
                   child: Text("ADD"),
-                  textColor: vCinza,
                   onPressed: _addToDo,
                 ),
               ],
@@ -112,7 +114,8 @@ class _HomeState extends State<Home> {
               child: ListView.builder(
                   padding: EdgeInsets.only(top: 10),
                   itemCount: _toDoList.length,
-                  itemBuilder: buildItem),
+                  itemBuilder: buildItem,
+              ),
             ),
           ),
         ],
@@ -173,16 +176,17 @@ class _HomeState extends State<Home> {
             ),
             duration: Duration(seconds: 3),
           );
-          Scaffold.of(context).removeCurrentSnackBar();
-          Scaffold.of(context).showSnackBar(snack);
+          ScaffoldMessenger.of(context).removeCurrentSnackBar();
+          ScaffoldMessenger.of(context).showSnackBar(snack);
         });
       },
     );
   }
 
+  //BUG: arrumara linha de baixo
   Future<File> _getFile() async {
-    final directory = await getApplicationDocumentsDirectory();
-    return File("${directory.path}/data.json");
+    //final directory = getApplicationDocumentsDirectory;
+    //return File("${directory.path}/data.json");
   }
 
   Future<File> _saveData() async {
